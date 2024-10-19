@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+.grid-data, .devices, .batteries, .charts {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#device-list, #battery-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.device, .battery {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}

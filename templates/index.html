@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Energy Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Energy Dashboard</h1>
+
+        <!-- Grid Data Section -->
+        <div class="grid-data">
+            <h2>Grid Data</h2>
+            <p>Current Price: <span id="grid-price"></span> $/kWh</p>
+            <p>Grid Saturation: <span id="grid-saturation"></span> %</p>
+        
+            <div class="profit">
+                <h2>Profit from Energy Sales</h2>
+                <p id="profit">Total Profit: $0.00</p>
+            </div>
+            
+            <div class="savings">
+                <h2>Cost Savings from Device Shutdowns</h2>
+                <p id="savings">Total Savings: $0.00</p>
+            </div>
+        </div>
+
+        <!-- Device Data Section -->
+        <div class="devices">
+            <h2>Devices</h2>
+            <div id="device-list"></div>
+        </div>
+
+        <!-- Battery Data Section -->
+        <div class="batteries">
+            <h2>Battery Status</h2>
+            <div id="battery-list"></div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts">
+            <h2>Energy Usage Charts</h2>
+            <canvas id="gridChart" width="400" height="200"></canvas>
+        </div>
+
+        
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
