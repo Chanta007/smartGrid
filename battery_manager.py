@@ -1,5 +1,3 @@
-# battery_manager.py
-
 class BatteryManager:
     def __init__(self):
         self.batteries = {}  # Dictionary to store information about all batteries
@@ -37,6 +35,14 @@ class BatteryManager:
                 self.profit += profit  # Accumulate profit
                 return {"message": f"Released {amount} kWh from battery {battery_id} at {price} $/kWh. Profit: {profit} $."}
             return {"error": "Insufficient charge in the battery."}
+        return {"error": "Battery not found."}
+
+    def get_battery_status(self, battery_id):
+        """
+        Returns the status of a specific battery.
+        """
+        if battery_id in self.batteries:
+            return self.batteries[battery_id]
         return {"error": "Battery not found."}
 
     def get_profit(self):

@@ -1,41 +1,44 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Fetch data when the page loads
     fetchDashboardData();
+    setInterval(fetchDashboardData, 5000); // Refresh every 5 seconds
 
-    // Function to fetch real-time data from the server
     function fetchDashboardData() {
         fetch('/api/dashboard_data')
             .then(response => response.json())
             .then(data => {
-                // Display Grid Data
+                // Update Grid Data
                 document.getElementById("grid-price").textContent = data.grid_data.current_price;
                 document.getElementById("grid-saturation").textContent = data.grid_saturation.grid_saturation;
 
-                // Display Devices
+                // Update Profit and Savings
+                fetch('/profit')
+                    .then(response => response.json())
+                    .then(profitData => {
+                        document.getElementById("profit").textContent = `Total Profit: $${profitData.total_profit.toFixed(2)}`;
+                    });
+                fetch('/savings')
+                    .then(response => response.json())
+                    .then(savingsData => {
+                        document.getElementById("savings").textContent = `Total Savings: $${savingsData.total_savings.toFixed(2)}`;
+                    });
+
+                // Update Device List
                 const deviceList = document.getElementById("device-list");
                 deviceList.innerHTML = '';
                 data.devices.forEach(device => {
                     const deviceElement = document.createElement('div');
                     deviceElement.className = 'device';
-                    deviceElement.innerHTML = `
-                        <p>Device ID: ${device.device_id}</p>
-                        <p>Type: ${device.type}</p>
-                        <p>Status: ${device.status}</p>
-                    `;
+                    deviceElement.innerHTML = `<p>Device ID: ${device.device_id}, Type: ${device.type}, Status: ${device.status}</p>`;
                     deviceList.appendChild(deviceElement);
                 });
 
-                // Display Battery Data
+                // Update Battery List
                 const batteryList = document.getElementById("battery-list");
                 batteryList.innerHTML = '';
                 data.batteries.forEach(battery => {
                     const batteryElement = document.createElement('div');
                     batteryElement.className = 'battery';
-                    batteryElement.innerHTML = `
-                        <p>Battery ID: ${battery.battery_id}</p>
-                        <p>Capacity: ${battery.capacity} kWh</p>
-                        <p>Current Charge: ${battery.current_charge} kWh</p>
-                    `;
+                    batteryElement.innerHTML = `<p>Battery ID: ${battery.battery_id}, Capacity: ${battery.capacity} kWh, Current Charge: ${battery.current_charge} kWh</p>`;
                     batteryList.appendChild(batteryElement);
                 });
 
@@ -44,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    // Function to update the Chart.js chart
     function updateGridChart(price, saturation) {
         const ctx = document.getElementById('gridChart').getContext('2d');
         new Chart(ctx, {
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+
 // Fetch profit and savings data
 function fetchProfitAndSavings() {
     fetch('/profit')
@@ -84,6 +87,8 @@ function fetchProfitAndSavings() {
             document.getElementById('savings').textContent = `Total Savings: $${data.total_savings.toFixed(2)}`;
         });
 }
+
+
 
 // Call this function when the page loads
 fetchProfitAndSavings();

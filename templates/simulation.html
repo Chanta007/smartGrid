@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Controller Simulation</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="/status">Status Dashboard</a></li>
+                <li><a href="/simulation">Energy Simulation</a></li>
+            </ul>
+        </nav>
+        <h1>Energy Controller Simulation</h1>
+
+        <!-- Add Device Section -->
+        <div class="section">
+            <h2>Add Device</h2>
+            <form id="deviceForm">
+                <label for="device_id">Device ID:</label>
+                <input type="text" id="device_id" name="device_id">
+                <label for="device_type">Device Type:</label>
+                <select id="device_type" name="device_type">
+                    <option value="light">Light</option>
+                    <option value="thermostat">Thermostat</option>
+                    <option value="appliance">Appliance</option>
+                </select>
+                <label for="device_status">Status:</label>
+                <select id="device_status" name="device_status">
+                    <option value="on">On</option>
+                    <option value="off">Off</option>
+                </select>
+                <button type="button" onclick="addDevice()">Add Device</button>
+            </form>
+        </div>
+
+        <!-- Grid Price and Saturation Control -->
+        <div class="section">
+            <h2>Grid Control</h2>
+            <label for="grid_price">Grid Price ($/kWh):</label>
+            <input type="range" id="grid_price" name="grid_price" min="0.05" max="1" step="0.01" oninput="updatePriceLabel()">
+            <span id="price_label">0.05</span>
+            <br><br>
+            <label for="grid_saturation">Grid Saturation (%):</label>
+            <input type="range" id="grid_saturation" name="grid_saturation" min="0" max="100" step="1" oninput="updateSaturationLabel()">
+            <span id="saturation_label">0</span>
+            <br><br>
+            <button type="button" onclick="updateGrid()">Update Grid</button>
+        </div>
+
+        <!-- Add Battery Section -->
+        <div class="section">
+            <h2>Add Battery</h2>
+            <form id="batteryForm">
+                <label for="battery_id">Battery ID:</label>
+                <input type="text" id="battery_id" name="battery_id">
+                <label for="capacity">Capacity (kWh):</label>
+                <input type="number" id="capacity" name="capacity">
+                <label for="current_charge">Current Charge (kWh):</label>
+                <input type="number" id="current_charge" name="current_charge">
+                <button type="button" onclick="addBattery()">Add Battery</button>
+            </form>
+        </div>
+
+        <!-- Optimization -->
+        <div class="section">
+            <button type="button" onclick="optimizeEnergy()">Optimize Energy</button>
+        </div>
+
+        <!-- Results Section -->
+        <div class="section">
+            <h2>Results</h2>
+            <p id="profit">Profit: $0</p>
+            <p id="savings">Savings: $0</p>
+            <div id="recommendations"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/simulation.js"></script>
+</body>
+</html>
