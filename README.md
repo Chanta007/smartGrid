@@ -70,11 +70,11 @@ The system exposes several API endpoints to interact with the energy optimizatio
 - **GET /api/savings**: Get the total savings from shutting down devices.
 
 ## Engery Controller
-  ![image](https://github.com/user-attachments/assets/0adb5bd6-2679-4220-b068-47d4172713a2)
+![image](https://github.com/user-attachments/assets/65c412e6-603a-4e55-b356-8e6a56b60e27)
+ 
 
 ## Engery Controller Simulator
-  ![image](https://github.com/user-attachments/assets/65c412e6-603a-4e55-b356-8e6a56b60e27)
-
+ ![image](https://github.com/user-attachments/assets/0adb5bd6-2679-4220-b068-47d4172713a2)
 
   
 
